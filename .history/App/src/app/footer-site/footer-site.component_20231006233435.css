@@ -1,0 +1,13 @@
+.footer a {
+    color: #70757a;
+    font-size: 0.91em;
+    padding-right: 10px;
+  }
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  .footer-right a {
+    padding-right: 10px;
+  }

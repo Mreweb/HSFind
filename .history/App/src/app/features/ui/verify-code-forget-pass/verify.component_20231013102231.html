@@ -1,0 +1,43 @@
+<app-header-site></app-header-site>
+<div class="main">
+
+  <div class="box">
+    <div id="logo" class="google-logo" title="Google">
+      <div class="rr0DNb" jsname="l4eHX">
+        <img width="100px" src="assets/images/hsfind.svg" />
+      </div>
+    </div>
+    <h2>ثبت نام</h2>
+    <p>کد تایید را وارد کنید</p>
+    <form [formGroup]="pageForm" >
+      <div class="inputBox">
+        <input type="text" formControlName="code" required="" onkeyup="this.setAttribute('value', this.value);" value=""/>
+        <label>کد تایید</label>
+      </div>
+      <div class="inputBox ">
+        <input type="password" formControlName="password" required="" onkeyup="this.setAttribute('value', this.value);"
+          value="" />
+        <label>رمز عبور</label>
+      </div>
+      <div class="inputBox">
+        <input type="password" formControlName="confirmPassword" required=""
+          onkeyup="this.setAttribute('value', this.value);" value="" />
+        <label>تکرار رمز عبور</label>
+      </div>
+      <div class="inputBox">
+        <input style="width:170px;margin-left:25px;" type="text" formControlName="captchaCode" required="" onkeyup="this.setAttribute('value', this.value);" value="" />
+        <label>کد امنیتی</label>
+        <i style="margin-left:6px;cursor: pointer;" (click)="getCaptcha()" class="glyphicon glyphicon-refresh"></i>
+        <img [src]="captchaSrc" style="width: 100px;" />
+      </div>
+      <div>
+      </div>
+      <div>
+        <div class="create">
+          <button type="submit" (click)="doRegister()">تایید</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<app-footer-site></app-footer-site>

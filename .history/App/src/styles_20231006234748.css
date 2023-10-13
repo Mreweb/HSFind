@@ -1,0 +1,71 @@
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+    font-family: "iransans";
+    src: url("assets/fonts/IRANSansWeb_Light.woff2") format("woff2");
+    src: url("assets/fonts/IRANSansWeb_Light.woff") format("woff");
+  }
+  .rtl{
+    direction: rtl;
+  }
+  .text-jusitfy{
+    text-align: justify;
+  }
+  body{
+    font-family: "iransans";
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 18px;
+  }
+  .article{
+
+    padding: 20px 30px;
+    background: #fff;
+    border-radius: 8px;
+    direction: rtl;
+    text-align: justify;
+    line-height: 35px;
+    min-height: calc(100vh - 250px);
+  }
+  .article h2{
+
+    margin: 15px 0;
+    font-size: 18px;
+    font-weight: 900;
+  }
+  .article p{
+
+  }
+  .article img{
+    max-width: 100%;
+  }
+  
+  .article ul{
+    padding: 0;
+    margin: 10px 0;
+  }
+
+  .main{
+    min-height: calc(100vh - 220px);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .box{
+        position: static !important;
+        top: 50%;
+        left: 50%;
+       transform: translate(0%, 0%) !important;
+        width: 40rem;
+        padding: 5.5rem 4rem !important;
+        box-sizing: border-box;
+        border: 1px solid #dadce0;
+        background-color: white;
+        border-radius: 8px;
+        direction: rtl;
+        display: block !important;
+        margin: 15px auto !important;
+  }

@@ -1,0 +1,7 @@
+.block-ui-wrapper {
+    background: rgba(0,0,0,0.3) !important;
+}
+.block-ui-spinner, .block-ui-template {
+    position: absolute;
+    transform: translateY(-50%) !important;
+}

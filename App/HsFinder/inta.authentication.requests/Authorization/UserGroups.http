@@ -1,0 +1,40 @@
+@address = http://localhost:5502/api
+//@address = http://api.gimex.info/content
+@lang = fa
+@version = v1
+
+##################################### کاربران گروه ########################################
+
+### دریافت لیست گروه های یک کاربر
+GET {{address}}/{{version}}/userGroups/users/e3fb4e60-2c63-406d-93f1-69fc0cbb6ecf/groups HTTP/1.1
+Content-Type: application/json
+
+### دریافت لیست نام های گروه های یک کاربر
+GET {{address}}/{{version}}/userGroups/users/e3fb4e60-2c63-406d-93f1-69fc0cbb6ecf/groups/names HTTP/1.1
+Content-Type: application/json
+
+### دریافت لیست پرمیژن های یک کاربر
+GET {{address}}/{{version}}/userGroups/users/e3fb4e60-2c63-406d-93f1-69fc0cbb6ecf/permissions/names
+    ?serviceName=Pricing
+Content-Type: application/json
+
+### انتساب کاربر به یک یا چند گروه
+### کاربر از گروه های فعلی حذف می شود
+POST {{address}}/{{version}}/userGroups/users/e3fb4e60-2c63-406d-93f1-69fc0cbb6ecf/groups HTTP/1.1
+Content-Type: application/json
+
+{
+    "groupIds": [
+        "1d20abba-35c9-45de-a1ac-ef3e5a58db06",
+        "e28fa48e-a736-4dbf-850d-66724387a779"
+    ]
+}
+
+### دریافت اطلاعات Authorization کاربر
+GET {{address}}/{{version}}/userGroups/users/e3fb4e60-2c63-406d-93f1-69fc0cbb6ecf/authorization-info HTTP/1.1
+Content-Type: application/json
+
+
+### آیا کاربر دسترسی مشخص شده را دارد ؟
+GET {{address}}/{{version}}/userGroups/users/e3fb4e60-2c63-406d-93f1-69fc0cbb6ecf/isAuthorize HTTP/1.1
+Content-Type: application/json

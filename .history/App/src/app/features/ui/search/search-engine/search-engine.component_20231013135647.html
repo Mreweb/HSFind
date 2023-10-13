@@ -1,0 +1,44 @@
+<app-header-site></app-header-site>
+<!-- Main Body Starts --> 
+<div class="col-xs-12 pull-left" style="padding:0;">
+    <form [formGroup]="pageForm">
+      <div class="nav-search rtl">
+        <div class="search-bar">
+          <div class="input-area">
+            <input formControlName="include" id="one" placeholder="بخشی از عبارت مورد نظر را تایپ کنید..." type="text">
+          </div>
+          <div class="twobuttons">
+            <button (click)="doSearch()">
+              جستجوی محصول
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+<div class="main-body main" >
+ 
+  <div class="col-xs-12 p-0">
+    <table class="table table=bordered table-hover table-stripped">
+      <thead>
+          <tr>
+            <th class="fit">ردیف</th>
+            <th>عنوان محصول</th>
+            <th class="fit">جزئیات</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of searchItems ;index as i; ">
+          <th class="fit">{{ i+1 }}</th>
+          <td>{{ item.title }}</td>
+          <td class="fit">{{ item.typeId }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-xs-12 p-0 text-center">
+    <button class="btn btn-primary" style="border-radius: 0;" (click)="doSearch(0)">بیشتر</button>
+  </div>
+</div>
+<!-- Main Body Ends -->
+<app-footer-site></app-footer-site>

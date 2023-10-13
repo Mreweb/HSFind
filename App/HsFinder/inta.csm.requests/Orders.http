@@ -1,0 +1,80 @@
+//@address = http://localhost:6803/api
+@address = http://api.inta.today/csm
+@lang = fa
+@version = v1
+@auth_cookie = accessToken=eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwidHlwIjoiSldUIn0.WCb1mviXGq0R29bLN4juxhmuzPKtYZNGUOuXFnSPsbca-7AeIxrWtA.5LEazqK-P_wMIqZp_HmAOA.HcHcr91JvlQmoLfLRhFFwxJHx4CKTCMXSjVgEy6siZ2H9aA1BOBgJqkIbNRenXSi7C6LNBFhJDJd3GLru954mcq6SQnRs91xU-JGfFdPAPTSivttODiKfolb3DvHoP8EBAxHCyTV3e2vYgvO6OpX2XA_taCKhkj_t6jbaWulOyzPZadDuoquR6SjF3o8vviR6qGcmBkjfQrLwsnLRV-hIUGk4E-zMS6nhQRpAdJTFr3IK28GvFOCKGc-OtK7NdYhlevFfe_tJBmMmIasFFkQD2pibiydk9CDHLGo8PCLG3wMY3HcgP-fPMOSgrnJl6IUCz05_VKxg8eokHhCoEIu5e29ndW79c5QnuHuXyny0ytXQFZ4juTQKjLoQ7k6UwUdKI8QzXTukkX6DHyP2vSKQIYBzbnuEg9AogjJEkVLg8WgTwuct4udjlNRZovhcNtnPPqMo7oUNnj2N7DlCTA6jvRDEtIQNvm4bIK_BBd3fGiAO7u3kRDoBR43YAGch8jjM8Y8QxXiiuicgPrGmiY-33XIWRRkdR-nyljIY-lTZfNGwfwCgYS3ZyyN2XcYNBL13HHgAKitX-eysJWao8TQy2g7lgY7g2LlAVO8LdaC5RLqNZ2K-7KM1tL3_JGtWQiKFG0UCrSbTR4xeErI253hHf8F_ZpkB7uiGHOWBhR5gwowy142VrTEeYZSVO6TTIJ7RUQqKehSV218rMtLsL6FLlQtE9lreTYzxd0HtHN3UgxxpLCRDfseyq79Q4ieWAYQ.wfAT_5zVIpzTjuDkjWc0Mw;
+
+##################################### سفارشات ########################################
+
+### دریافت اطلاعات یک سفارش
+
+GET {{address}}/{{lang}}/{{version}}/orders/28e7b8f6-3417-4112-9488-d4ccf0a75069 HTTP/1.1
+Content-Type: application/json
+Cookie: {{auth_cookie}}
+
+
+### دریافت لیست سفارشات کاربر توسط خود کاربر
+
+GET {{address}}/{{lang}}/{{version}}/orders/my?page=1&pageSize=20 HTTP/1.1
+Content-Type: application/json
+Cookie: {{auth_cookie}}
+
+
+### دریافت لیست سفارشات کاربر توسط ادمین
+
+GET {{address}}/{{lang}}/{{version}}/orders/for-user/1994bdde-d815-4c6e-a56f-03ba3a4a1875?page=1&pageSize=20 HTTP/1.1
+Content-Type: application/json
+Cookie: {{auth_cookie}}
+
+
+### دریافت لیست سفارشات در یک وضعیت خاص (ادمین)
+
+GET {{address}}/{{lang}}/{{version}}/orders/by-state/PaymentFailed?page=1&pageSize=20 HTTP/1.1
+Content-Type: application/json
+Cookie: {{auth_cookie}}
+
+
+### ثبت سفارش جدید توسط مشتری
+
+POST {{address}}/{{lang}}/{{version}}/orders HTTP/1.1
+Content-Type: application/json
+Cookie: {{auth_cookie}}
+
+{
+    "currencyType": "USD",
+    "orderItems": [{
+        "planId":"51fe1246-6385-4755-84a5-bf41ffaa17fb",
+        "discountCode": null
+        }
+    ]
+}
+
+
+### لغو سفارش قبل از پرداخت
+
+PUT {{address}}/{{lang}}/{{version}}/orders/28e7b8f6-3417-4112-9488-d4ccf0a75069/cancel HTTP/1.1
+Content-Type: application/json
+Cookie: {{auth_cookie}}
+
+
+### شروع پرداخت سفارش
+
+PUT {{address}}/{{lang}}/{{version}}/orders/28e7b8f6-3417-4112-9488-d4ccf0a75069/start HTTP/1.1
+Content-Type: application/json
+Cookie: {{auth_cookie}}
+
+{
+    "gateway": "YekPay"
+}
+
+### تایید سفارش پس از پرداخت
+
+PUT {{address}}/{{lang}}/{{version}}/orders/28e7b8f6-3417-4112-9488-d4ccf0a75069/verify HTTP/1.1
+Content-Type: application/json
+Cookie: {{auth_cookie}}
+
+{
+    "gateway": "YekPay", 
+    "authority": 123456789
+}
+

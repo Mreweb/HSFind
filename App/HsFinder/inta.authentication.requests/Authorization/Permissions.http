@@ -1,0 +1,15 @@
+@address = http://localhost:5502/api
+//@address = http://api.gimex.info/content
+@lang = fa
+@version = v1
+
+
+##################################### پرمیژن ها ########################################
+
+### دریافت لیست پرمیژن ها
+GET {{address}}/{{version}}/permissions?page=1&pageSize=20 HTTP/1.1
+Content-Type: application/json
+
+### دریافت اطلاعات یک پرمیژن
+GET {{address}}/{{version}}/permissions/3c14b191-9aaa-4c17-81a9-eb197d8678ee HTTP/1.1
+Content-Type: application/json

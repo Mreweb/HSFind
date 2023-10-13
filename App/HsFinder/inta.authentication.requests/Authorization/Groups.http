@@ -1,0 +1,76 @@
+@address = http://localhost:5502/api
+//@address = http://api.gimex.info/content
+@lang = fa
+@version = v1
+
+################################### گروه های کاربری ######################################
+
+### دریافت لیست گروه های کاربری
+GET {{address}}/{{version}}/groups?page=1&pageSize=20 HTTP/1.1
+Content-Type: application/json
+
+
+### دریافت اطلاعات یک گروه کاربری
+GET {{address}}/{{version}}/groups/38b78e2e-e986-4a6d-a70f-ab0f7da1157e HTTP/1.1
+Content-Type: application/json
+
+
+### ایجاد یک گروه کاربری جدید
+POST {{address}}/{{version}}/groups HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "my-group",
+}
+
+
+### ویرایش اطلاعات یک گروه
+PUT {{address}}/{{version}}/groups/38b78e2e-e986-4a6d-a70f-ab0f7da1157e HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "my-group",
+}
+
+
+### دریافت لیست دسترسی های یک گروه کاربری
+GET {{address}}/{{version}}/groups/38b78e2e-e986-4a6d-a70f-ab0f7da1157e/permissions HTTP/1.1
+Content-Type: application/json
+
+
+### دریافت لیست عنوان های دسترسی های یک گروه کاربری
+GET {{address}}/{{version}}/groups/38b78e2e-e986-4a6d-a70f-ab0f7da1157e/permissions/names HTTP/1.1
+Content-Type: application/json
+
+
+### دریافت لیست عنوان های دسترسی های گروه های کاربری درخواست شده
+GET {{address}}/{{version}}/groups/permissions/names
+    ?groupIds=38b78e2e-e986-4a6d-a70f-ab0f7da1157e
+    &groupIds=3c14b191-9aaa-4c17-81a9-eb197d8678ee
+Content-Type: application/json
+
+
+### انتساب پرمیژن به گروه
+### پرمیژن های قبلی حذف می شوند
+POST {{address}}/{{version}}/groups/38b78e2e-e986-4a6d-a70f-ab0f7da1157e/permissions HTTP/1.1
+Content-Type: application/json
+
+{
+    "permissionIds": [
+        "073437a4-a84a-4354-8d1a-e22c765ac0b9",
+        "f942cfd6-cb69-400e-97eb-6e60523b40af"
+    ]
+}
+
+
+### آیا گروه به پرمیژن مورد نظر دسترسی دارد ؟
+GET {{address}}/{{version}}/groups/38b78e2e-e986-4a6d-a70f-ab0f7da1157e/permissions/Pricing-ManageProducts/isAuthorize HTTP/1.1
+Content-Type: application/json
+
+
+### آیا گروه های درخواست شده به پرمیژن مورد نظر دسترسی دارد ؟
+GET {{address}}/{{version}}/permissions/Pricing-ManageProducts/isAuthorize
+    ?serviceName=Pricing
+    &groupIds=38b78e2e-e986-4a6d-a70f-ab0f7da1157e
+    &groupIds=3c14b191-9aaa-4c17-81a9-eb197d8678ee
+Content-Type: application/json

@@ -1,0 +1,66 @@
+<app-header-site></app-header-site>
+<!-- Main Body Starts --> 
+<div class="col-xs-12 pull-left" style="padding:0;">
+    <form [formGroup]="pageForm">
+      <div class="nav-search rtl">
+        <div class="search-bar">
+          <div class="input-area">
+            <input formControlName="include" id="one" placeholder="بخشی از عبارت مورد نظر را تایپ کنید..." type="text">
+          </div>
+          <div class="twobuttons">
+            <button (click)="doSearch()">
+              جستجوی محصول
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+<div class="main-body main" >
+ 
+  <div class="col-xs-12 p-0">
+
+    <ng-select [(ngModel)]="countryId">
+      <ng-option *ngFor="let cnt of contries" [value]="cnt.id">
+        <span class="fi fi-{{cnt.officialName.toLowerCase() }} "></span>
+        {{cnt.officialName}}
+      </ng-option>
+    </ng-select>
+
+
+
+    <table class="table table=bordered table-hover table-striped">
+      <thead>
+          <tr>
+            <th class="fit">کد محصول</th>
+            <th>عنوان محصول</th>
+            <th class="fit">وارد کننده</th>
+            <th class="fit">ﻗﻮاﻧﯿﻦ واردات</th>
+            <th class="fit">ﺗﻌﺮﻓﻪ ﻣﯿﺎﻧگﯿﻦ</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of searchItems ;index as i; ">
+          <th class="fit">{{ i+1 }}</th>
+          <td>{{ item.title }}</td>
+          <td class="fit">
+            <a class="btn btn-default" [routerLink]="'/SearchEngine/productDetail'+item.typeId">
+              جزئیات
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-xs-12 p-0 text-center">
+    <button *ngIf="hasData" class="btn btn-primary" style="    padding: 6px;
+    width: 75px;
+    height: 35px;
+    border-radius: 6px;
+    border: 0;
+    font-size: 14px;
+    outline: 0;" (click)="doSearch(0)">بیشتر</button>
+  </div>
+</div>
+<!-- Main Body Ends -->
+<app-footer-site></app-footer-site>

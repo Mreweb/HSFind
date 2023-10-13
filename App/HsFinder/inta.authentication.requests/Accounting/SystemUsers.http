@@ -1,0 +1,91 @@
+@address = http://localhost:5502/api
+//@address = http://api.gimex.info/content
+@lang = fa
+@version = v1
+
+##################################### کاربران سیستمی ########################################
+
+### دریافت لیست کاربران سیستمی
+GET {{address}}/{{version}}/systemUsers?page=1&pageSize=20 HTTP/1.1
+Content-Type: application/json
+
+
+### دریافت مشخصات یک کاربر سیستمی
+GET {{address}}/{{version}}/systemUsers/75a39349-020f-4816-9936-fb158b032a6d HTTP/1.1
+Content-Type: application/json
+
+
+### ثبت نام کاربر سیستمی جدید (توسط ادمین)
+POST {{address}}/{{version}}/systemUsers/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": "b173827b-843a-42b7-95bb-d36f9ffd9228",
+    "firstName": "alireza",
+    "lastName": "ammari",
+    "userName": "alireza",
+    "phoneNumber": "09123456789",
+    "email": "alireza@google.com",
+    "password": "very_secure_password",
+    "twoFactorEnabled": true,
+}
+
+
+### ویرایش مشخصات کاربر سیستمی
+PUT {{address}}/{{version}}/systemUsers/b173827b-843a-42b7-95bb-d36f9ffd9228 HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "alireza",
+    "lastName": "ammari",
+    "phoneNumber": "09123456789",
+    "twoFactorEnabled": true,
+    "isActive": true,
+}
+
+
+### دریافت لیست نقش های کاربر سیستمی
+GET {{address}}/{{version}}/systemUsers/9adb7ac3-94f9-4918-9ac9-8d0092e5a6f7/roles HTTP/1.1
+Content-Type: application/json
+
+
+### انتساب نقش به کاربر
+### از این ای پی آی استفاده نمی شود
+POST {{address}}/{{version}}/systemUsers/9adb7ac3-94f9-4918-9ac9-8d0092e5a6f7/roles HTTP/1.1
+Content-Type: application/json
+
+{
+    "roles": ["SystemUser"],
+}
+
+### حذف نقش از کاربر
+### از این ای پی آی استفاده نمی شود
+DELETE {{address}}/{{version}}/systemUsers/9adb7ac3-94f9-4918-9ac9-8d0092e5a6f7/roles HTTP/1.1
+Content-Type: application/json
+
+{
+    "role": "SystemUser",
+}
+
+### فعال کردن کاربر
+POST {{address}}/{{version}}/systemUsers/9adb7ac3-94f9-4918-9ac9-8d0092e5a6f7/activate HTTP/1.1
+Content-Type: application/json
+
+
+### غیر فعال کردن کاربر
+POST {{address}}/{{version}}/systemUsers/9adb7ac3-94f9-4918-9ac9-8d0092e5a6f7/deactivate HTTP/1.1
+Content-Type: application/json
+
+
+##################################### نقش ها ########################################
+
+
+### دریافت لیست نقش ها
+GET {{address}}/{{version}}/roles HTTP/1.1
+Content-Type: application/json
+
+
+### دریافت اطلاعات یک نقش
+GET {{address}}/{{version}}/roles/SystemUser HTTP/1.1
+Content-Type: application/json
+

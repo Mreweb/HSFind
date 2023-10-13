@@ -1,0 +1,35 @@
+<app-header-site></app-header-site>
+<div class="main animate__animated animate__fadeIn">
+  <div class="box">
+    <div id="logo" class="google-logo" title="Google">
+      <div class="rr0DNb" jsname="l4eHX">
+        <img width="100px" src="assets/images/hsfind.svg" />
+      </div>
+    </div>
+    <form [formGroup]="pageForm">
+      <h2>فراموشی رمز عبور</h2>
+      <p>تلفن همراه خود را وارد کنید</p>
+      <div class="inputBox  col-xs-12 pull-right">
+        <input type="text" formControlName="userName" required="" onkeyup="this.setAttribute('value', this.value);" value="">
+        <label>نام کاربری</label>
+      </div>
+      <div class="inputBox col-md-6 col-xs-12 pull-right">
+        <input type="text" formControlName="captchaCode" required="" onkeyup="this.setAttribute('value', this.value);"
+          value="" />
+        <label>کد امنیتی</label>
+
+      </div>
+      <div class="inputBox col-md-6 col-xs-12 pull-right">
+        <i style="margin-left:6px;cursor: pointer;" (click)="getCaptcha()" class="glyphicon glyphicon-refresh"></i>
+        <img [src]="captchaSrc" style="width: 100px;" />
+      </div>
+      <div class="col-xs-12  ">
+        <div class="create">
+          <button type="button" routerLink="/Login">ورود</button>
+          <button (click)="doRegister();" type="submit">ادامه</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<app-footer-site></app-footer-site>

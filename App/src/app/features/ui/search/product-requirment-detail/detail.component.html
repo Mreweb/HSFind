@@ -1,0 +1,68 @@
+<app-header-site></app-header-site>
+<!-- Main Body Starts --> 
+<div class="col-xs-12 pull-left" style="padding:0;">
+
+
+  <div class="col-md-8 col-xs-12 pull-right p-0">
+    <span class="product-title">
+      {{ product.title }}
+    </span>
+  </div>
+  <div class="col-md-4 col-xs-12 pull-left rtl p-0">
+    <ng-select (change)="loadData()" [(ngModel)]="countryId">
+      <ng-option *ngFor="let cnt of contries" [value]="cnt.code">
+        <span class="fi fi-{{cnt.iso.toLowerCase() }} "></span>
+        {{cnt.officialName}}
+      </ng-option>
+    </ng-select>
+  </div>
+  <style>
+    .ng-select-container {
+  height: 45px !important;
+}
+  </style>
+
+ </div>
+<div class="main-body main" >
+ 
+  <div class="col-xs-12 p-0">
+    <table class="table table=bordered table-hover table-striped">
+      <thead>
+          <tr>
+            <th class="fit">ردیف</th>
+            <th class="fit">کد محصول</th>
+            <th>عنوان محصول</th>
+            <th class="fit">وارد کننده</th>
+            <th class="fit">ﻗﻮاﻧﯿﻦ واردات</th>
+            <th class="fit">ﺗﻌﺮﻓﻪ ﻣﯿﺎﻧگﯿﻦ</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of productList ;index as i; ">
+          <th class="fit">{{ i+1 }}</th>
+          <td class="fit">
+            <a [routerLink]="'/SearchEngine/productCodeDetail/'+item.htsCode+'/'+item.countryCode">
+              {{ item.htsCode }}
+            </a>
+          </td>
+          <td>{{ item.title }}</td>
+          <td class="fit">{{ item.countryName }}</td>
+          <td class="fit">
+            <span *ngIf="item.hasRequirements">     
+            <a [routerLink]="'/SearchEngine/productRequiermentDetail/'+item.htsCode+'/'+item.countryCode">
+              مشاهده
+            </a>
+            </span>
+          </td>
+          <td class="fit">
+            <a [routerLink]="'/SearchEngine/productTarrifsDetail/'+item.htsCode+'/'+item.countryCode">
+              {{ item.mfnTariff }}
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div> 
+</div>
+<!-- Main Body Ends -->
+<app-footer-site></app-footer-site>

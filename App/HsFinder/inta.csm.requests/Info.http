@@ -1,0 +1,42 @@
+//@address = http://localhost:6803/api
+@address = http://api.inta.today/csm
+@lang = fa
+@version = v1
+
+@authApi = http://api.inta.today/auth
+
+@auth_cookie = accessToken=eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwidHlwIjoiSldUIn0.QJmYVNWKZJAEzVBR27hZoRfi5l2g3_5okMCX0szdIS9O-_27ezpcTQ.lFEQvpC31vWMXVddvmaxOg.62ooEhZlvP9_jDVmBz7lqn2frmSRWk3ACq7iDYdnB-ks1C3txFM_Ajjw6iS_hs0EPGTeetagjG3VNIonyr75h77jdBsIL3YOGs_Ny31jxHjzmI5CE8uZPx0Dadnm-QjghnNhUI6aU4DBUF7xpQvY2Tw514fIE0yuXCyyBeXINNlDY4S5QZ5t4LIqhNPfiuZ0ni_ow0U7cPUzsoFa_h5N49irxHU7FN12vnnDjlc1VWShJsEcv_y9BvnZ85cyPfzn633dd1ZY1615YyzoxTwPLMvy4jTfoH1b7GNnDZ87j7voukq9pRiEk7XyjSROMeIC-eZjDz3rzg-MOKYmraU3NM1rleKjpJt3MkBRQCHxOg0DwcKFp7MZZzQPDKqVpXJHmvt3efsFG8D4hYnbSMNleVqbbPjvZCPLFrf_Sm_hQW0mlNgM__ntfHlfJJ-QZsowTfju4XccDIxFB9GpfEwdT6hhJkUmYquFK6hrzcLMjbzufjialtHMBE20UtBOnZ9y2Qpyw0F2TRB3OfZC9GaEsDZaUr5CSMrMgB5zYYqD7PnYXNZ-o56sINHRVRTAGbHPS5naa_qDU5qdpicUl2q47H5DzFU6Ln8iBJA4yszvLFwqskqcVgxrS4e3vB0v18GOuuES93NM_bBrOj-6XLgmmEnl85s7CgiT48zuVN2I3x1AVy5D_rbySdm8EGmftKh21SMmkyB0kz8k9pLFci_-vqQyPKToAScOy38NVeo991wMv8XoYbbB8u4_-msBFgEJ.5vI0-a2eoX64WQRzxgZ5yA; 
+
+##################################### information ########################################
+
+GET {{address}}/{{lang}}/{{version}}/info/client/?includeHeaders=false
+Content-Type: application/json
+Cookie: {{auth_cookie}}
+
+###
+
+### دریافت لیست اینام ها
+
+GET {{address}}/{{lang}}/{{version}}/info/enums
+Content-Type: application/json
+Cookie: {{auth_cookie}}
+
+
+
+### ورود به سیستم
+
+POST {{authApi}}/{{version}}/signin/password
+Content-Type: application/json
+Cookie: {{auth_cookie}}
+
+{
+    "userName": "Administrator",
+    "password": "P@ssw0rd"
+}
+
+### خروج از سیستم
+
+POST {{authApi}}/{{version}}/signout
+Content-Type: application/json
+Cookie: {{auth_cookie}}
+

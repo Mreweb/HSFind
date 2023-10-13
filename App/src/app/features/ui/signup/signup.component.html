@@ -1,0 +1,66 @@
+<app-header-site></app-header-site>
+<div class="main animate__animated animate__fadeIn">
+
+  <div class="box">
+    <div id="logo" class="google-logo" title="Google">
+      <div class="rr0DNb" jsname="l4eHX">
+        <img width="100px" src="assets/images/hsfind.svg" />
+      </div>
+    </div>
+    <h2>ثبت نام</h2>
+    <p>اطلاعات کاربری خود را وارد کنید</p>
+    <form [formGroup]="pageForm">
+      <div class="inputBox col-md-6 col-xs-12 pull-right">
+        <input type="text" formControlName="name" required="" onkeyup="this.setAttribute('value', this.value);"
+          value="" />
+        <label>نام و نام خانوادگی</label>
+      </div>
+      <div class="inputBox col-md-6 col-xs-12 pull-right">
+        <input type="text" formControlName="phoneNumber" required="" onkeyup="this.setAttribute('value', this.value);"
+          value="" />
+        <label>تلفن همراه</label>
+      </div>
+      <div class="inputBox col-md-6 col-xs-12 pull-right">
+        <input type="text" formControlName="email" required="" onkeyup="this.setAttribute('value', this.value);"
+          value="" />
+        <label>ایمیل</label>
+      </div>
+      <div class="inputBox col-md-6 col-xs-12 pull-right">
+        <input type="text" formControlName="userName" required="" onkeyup="this.setAttribute('value', this.value);"
+          value="" />
+        <label>نام کاربری</label>
+      </div>
+      <div class="inputBox col-md-6 col-xs-12 pull-right">
+        <input type="password" formControlName="password" required="" onkeyup="this.setAttribute('value', this.value);"
+          value="" />
+        <label>رمز عبور</label>
+      </div>
+      <div class="inputBox col-md-6 col-xs-12 pull-right">
+        <input type="password" formControlName="confirmPassword" required=""
+          onkeyup="this.setAttribute('value', this.value);" value="" />
+        <label>تکرار رمز عبور</label>
+      </div>
+      <div class="inputBox col-md-6 col-xs-12 pull-right">
+        <input type="text" formControlName="captchaCode" required="" onkeyup="this.setAttribute('value', this.value);"
+          value="" />
+        <label>کد امنیتی</label>
+
+      </div>
+      <div class="inputBox col-md-6 col-xs-12 pull-right">
+        <i style="margin-left:6px;cursor: pointer;" (click)="getCaptcha()" class="glyphicon glyphicon-refresh"></i>
+        <img [src]="captchaSrc" style="width: 100px;" />
+      </div>
+
+      <div class="forgot col-xs-12">
+        <button type="button" routerLink="/ForgotPass">رمز عبور خود را فراموش کرده اید؟</button>
+      </div>
+      <div>
+        <div class="create  col-xs-12">
+          <button type="button" routerLink="/Login">ورود</button>
+          <button type="submit" (click)="doRegister()">ادامه</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<app-footer-site></app-footer-site>

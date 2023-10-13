@@ -1,0 +1,22 @@
+<app-header-site></app-header-site>
+<!-- Main Body Starts -->
+<div class="main-body main" style="display: block;">
+  <div class="col-xs-12 pull-left">
+    <form [formGroup]="pageForm">
+      <div class="nav-search rtl">
+        <div class="search-bar">
+          <div class="input-area">
+            <input formControlName="include" id="one" placeholder="بخشی از عبارت مورد نظر را تایپ کنید..." type="text">
+          </div>
+        </div>
+      </div>
+      <div class="twobuttons">
+        <button (click)="doSearch()">
+          جستجوی محصول
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- Main Body Ends -->
+<app-footer-site></app-footer-site>

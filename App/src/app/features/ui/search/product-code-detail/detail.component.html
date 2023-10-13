@@ -1,0 +1,36 @@
+<app-header-site></app-header-site>
+
+<div class="col-xs-12 pull-left" style="padding:0;">
+  <div class="col-md-8 col-xs-12 pull-right p-0">
+    <span class="product-title">
+      {{ product?.title }}
+    </span>
+  </div>
+  <div class="col-md-4 col-xs-12 pull-left rtl p-0">
+    <ng-select  (change)="loadData()" [(ngModel)]="countryCode">
+      <ng-option *ngFor="let cnt of contries" [value]="cnt.code">
+        <span class="fi fi-{{cnt.iso.toLowerCase() }} "></span>
+        {{cnt.officialName}}
+      </ng-option>
+    </ng-select>
+  </div>
+  <style>
+    .ng-select-container {
+      height: 45px !important;
+    }
+  </style>
+</div>
+<div class="main-body main">
+  <div class="col-xs-12 p-0">
+    <ul class="list">
+      <li *ngFor="let item of treeItems;index as i;">
+        <div  [style.margin-right.px]="i*15">
+          <span class="code">{{ item.code }}</span>
+          <span class="title">{{ item.title }}</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- Main Body Ends -->
+<app-footer-site></app-footer-site>

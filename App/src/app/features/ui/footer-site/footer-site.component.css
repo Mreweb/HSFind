@@ -1,0 +1,25 @@
+.last-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 32.5px 0px 32.5px;
+    height: 100px;
+    font-size: 15px;
+    background-color: #fff;
+  }
+  
+  .last-bar img{
+    max-width: 60px;
+  }
+.footer a {
+    color: #70757a;
+    font-size: 0.91em;
+    padding-right: 10px;
+  }
+  .footer { 
+    bottom: 0;
+    width: 100%;
+  }
+  .footer-right a {
+    padding-right: 10px;
+  }
