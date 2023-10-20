@@ -26,7 +26,7 @@ export class VerifyForgetPasswordComponent implements OnInit {
   pageForm = new FormGroup({
     code: new FormControl('', [Validators.required]),
     userId: new FormControl(this.userId, [Validators.required]),
-    password: new FormControl('', [Validators.required]),
+    newpassword: new FormControl('', [Validators.required]),
     confirmPassword: new FormControl('', [Validators.required]),
     captchaCode: new FormControl('', [Validators.required]),
     captchaId: new FormControl('', [Validators.required])

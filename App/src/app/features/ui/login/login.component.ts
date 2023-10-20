@@ -62,6 +62,10 @@ export class LoginComponent {
             this.storage.setLocal("userInfo" , data.content.userInfo );
             this.router.navigate(['../'] ,  { relativeTo: this.route });
           }
+          if(data.content.result == 'ActivationNeeded'){
+            let userId = data.content.userId;
+            this.router.navigate(['../Verify/'+userId], { relativeTo: this.route });
+          }
           this.toastr.info(data.message);
         },
         error => {

@@ -105,10 +105,10 @@ export class HttpRestService {
       opt = { params: params, headers: header };
     }
     else {
-      let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-      opt = { params: params, headers: headers };
+      let headers = new HttpHeaders({ 'Content-Type': 'application/json' }); 
+      opt = { params: params, headers: headers, withCredentials: true , credentials: "include"  };
     }
-    return this.httpClient.get(this.apiUrlSetting.getQueryApiUrl(this.controller), opt)
+    return this.httpClient.get(this.apiUrlSetting.getQueryApiUrl(this.controller), opt  )
   }
   createService(body: any, header: any = null): Observable<any> {
     if (header === null) {

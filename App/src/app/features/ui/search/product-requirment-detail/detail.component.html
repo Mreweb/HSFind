@@ -1,15 +1,20 @@
 <app-header-site></app-header-site>
-<!-- Main Body Starts --> 
+<!-- Main Body Starts -->
 <div class="col-xs-12 pull-left" style="padding:0;">
 
 
   <div class="col-md-8 col-xs-12 pull-right p-0">
     <span class="product-title">
       {{ product.title }}
+      <br>
+      کشور
+      {{ sourceCountryName }}
     </span>
   </div>
+
   <div class="col-md-4 col-xs-12 pull-left rtl p-0">
-    <ng-select (change)="loadData()" [(ngModel)]="countryId">
+    <label>کشور مقصد</label>
+    <ng-select (change)="getRules()" [(ngModel)]="destinationCoutryCode">
       <ng-option *ngFor="let cnt of contries" [value]="cnt.code">
         <span class="fi fi-{{cnt.iso.toLowerCase() }} "></span>
         {{cnt.officialName}}
@@ -18,51 +23,68 @@
   </div>
   <style>
     .ng-select-container {
-  height: 45px !important;
-}
+      height: 45px !important;
+    }
   </style>
 
- </div>
-<div class="main-body main" >
- 
+</div>
+<div class="main-body main">
+
   <div class="col-xs-12 p-0">
-    <table class="table table=bordered table-hover table-striped">
-      <thead>
-          <tr>
-            <th class="fit">ردیف</th>
-            <th class="fit">کد محصول</th>
-            <th>عنوان محصول</th>
-            <th class="fit">وارد کننده</th>
-            <th class="fit">ﻗﻮاﻧﯿﻦ واردات</th>
-            <th class="fit">ﺗﻌﺮﻓﻪ ﻣﯿﺎﻧگﯿﻦ</th>
-          </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of productList ;index as i; ">
-          <th class="fit">{{ i+1 }}</th>
-          <td class="fit">
-            <a [routerLink]="'/SearchEngine/productCodeDetail/'+item.htsCode+'/'+item.countryCode">
-              {{ item.htsCode }}
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default" *ngFor="let item of rules;let i=index;">
+        <div class="panel-heading" role="tab" id="collapse-heading-{{item.code}}">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{item.code}}"
+              aria-expanded="true" aria-controls="collapseOne">
+              {{item.title}}
             </a>
-          </td>
-          <td>{{ item.title }}</td>
-          <td class="fit">{{ item.countryName }}</td>
-          <td class="fit">
-            <span *ngIf="item.hasRequirements">     
-            <a [routerLink]="'/SearchEngine/productRequiermentDetail/'+item.htsCode+'/'+item.countryCode">
-              مشاهده
-            </a>
-            </span>
-          </td>
-          <td class="fit">
-            <a [routerLink]="'/SearchEngine/productTarrifsDetail/'+item.htsCode+'/'+item.countryCode">
-              {{ item.mfnTariff }}
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div> 
+          </h4>
+        </div>
+        <div id="collapse{{item.code}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            <ul class="list-ul">
+              <li class="list-li" *ngFor="let measure of item.measures;let j=index;">
+                <div class="list-title">
+                  {{measure.title}}
+                </div>
+                <div class="list-summary">
+                  {{measure.summary}}
+                </div>
+                <div class="table-row" *ngFor="let requirement of measure.requirements;let k=index;">
+                  <div class="col-xs-12 p-0">
+                    <span class="key">خلاصه</span>
+                    <span class="value">{{requirement.legislationSummary}}</span>
+                  </div>
+                  <div class="col-xs-12 p-0">
+                    <span class="key"> نهاد اجرایی</span>
+                    <span class="value">{{requirement.implementationAuthority}}</span>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-xs-12 p-0">
+                    <span class="key">تاریخ شروع</span>
+                    <span class="value">{{requirement.startDate}}</span>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-xs-12 p-0">
+                    <span class="key">تاریخ پایان </span>
+                    <span class="value">{{requirement.endDate}}</span>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-xs-12 p-0">
+                    <span class="key">نسخه</span>
+                    <span class="value">{{requirement.hsRevision}}</span>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-xs-12 p-0">
+                    <span class="key">سال</span>
+                    <span class="value">{{requirement.ntmYear}}</span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- Main Body Ends -->
 <app-footer-site></app-footer-site>

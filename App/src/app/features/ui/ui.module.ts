@@ -22,6 +22,9 @@ import { ProductDetailComponent } from './search/product-detail/detail.component
 import { ProductCodeDetailComponent } from './search/product-code-detail/detail.component';
 import { ProductRequirmentDetailComponent } from './search/product-requirment-detail/detail.component';
 import { ProductTariffDetailComponent } from './search/product-tariff-detail/detail.component';
+import { ProfileInfoComponent } from './profile/info/profile-info.component';
+import { CSMService } from '@app/services/ui/csm.service';
+import { CountryService } from '@app/services/ui/country.service';
 
 
 @NgModule({
@@ -40,7 +43,11 @@ import { ProductTariffDetailComponent } from './search/product-tariff-detail/det
     ProductDetailComponent,
     ProductCodeDetailComponent,
     ProductRequirmentDetailComponent,
-    ProductTariffDetailComponent
+    ProductTariffDetailComponent,
+
+
+    /*Profile*/
+    ProfileInfoComponent,
   ],
   imports: [
     CommonModule,
@@ -49,7 +56,7 @@ import { ProductTariffDetailComponent } from './search/product-tariff-detail/det
     NgSelectModule,
     UIRoutingModule  
   ],
-  providers: [CustomerService , ProductService],
+  providers: [CustomerService , ProductService , CSMService , CountryService],
   exports: [RouterModule]
 })
 export class UIModule { }

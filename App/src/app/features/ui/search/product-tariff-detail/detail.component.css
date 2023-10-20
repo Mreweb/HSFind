@@ -1,12 +1,13 @@
 .product-title {
   float: right;
   background: #fff;
-  font-size: 20px;
+  font-size: 15px;
   padding: 6px 12px;
   min-width: 250px;
   direction: rtl;
   text-align: justify;
   font-weight: 900;
+  line-height: 30px;
 }
 
 

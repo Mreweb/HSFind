@@ -16,6 +16,7 @@ import { ProductDetailComponent } from './search/product-detail/detail.component
 import { ProductRequirmentDetailComponent } from './search/product-requirment-detail/detail.component';
 import { ProductCodeDetailComponent } from './search/product-code-detail/detail.component';
 import { ProductTariffDetailComponent } from './search/product-tariff-detail/detail.component';
+import { ProfileInfoComponent } from './profile/info/profile-info.component';
 
  
 const routes: Routes = [
@@ -34,7 +35,9 @@ const routes: Routes = [
   { path: "SearchEngine/productRequiermentDetail/:htsCode/:countryCode",  title: "جستجوی محصول" , component: ProductRequirmentDetailComponent }, 
   { path: "SearchEngine/productTarrifsDetail/:htsCode/:countryCode",  title: "جستجوی محصول" , component: ProductTariffDetailComponent }, 
   
+  { path: "Profile",  title: "پروفایل کابری" , component: ProfileInfoComponent }, 
 
+  
   
 ];
 

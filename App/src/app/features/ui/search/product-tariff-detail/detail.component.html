@@ -5,11 +5,14 @@
 
   <div class="col-md-8 col-xs-12 pull-right p-0">
     <span class="product-title">
-      {{ product.title }}
+      {{ product?.title }}
+      <br>
+      کشور
+      {{ sourceCountryName }}
     </span>
   </div>
   <div class="col-md-4 col-xs-12 pull-left rtl p-0">
-    <ng-select (change)="loadData()" [(ngModel)]="countryId">
+    <ng-select (change)="getTarrifs()" [(ngModel)]="destinationCoutryCode">
       <ng-option *ngFor="let cnt of contries" [value]="cnt.code">
         <span class="fi fi-{{cnt.iso.toLowerCase() }} "></span>
         {{cnt.officialName}}
@@ -31,34 +34,24 @@
           <tr>
             <th class="fit">ردیف</th>
             <th class="fit">کد محصول</th>
-            <th>عنوان محصول</th>
-            <th class="fit">وارد کننده</th>
-            <th class="fit">ﻗﻮاﻧﯿﻦ واردات</th>
-            <th class="fit">ﺗﻌﺮﻓﻪ ﻣﯿﺎﻧگﯿﻦ</th>
+            <th>صادر کننده</th>
+            <th class="fit">سال</th>
+            <th class="fit">ﺗﻌﺮﻓﻪ</th>
           </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of productList ;index as i; ">
           <th class="fit">{{ i+1 }}</th>
           <td class="fit">
-            <a [routerLink]="'/SearchEngine/productCodeDetail/'+item.htsCode+'/'+item.countryCode">
-              {{ item.htsCode }}
-            </a>
+              {{ item.productCode }}
           </td>
-          <td>{{ item.title }}</td>
-          <td class="fit">{{ item.countryName }}</td>
-          <td class="fit">
-            <span *ngIf="item.hasRequirements">     
-            <a [routerLink]="'/SearchEngine/productRequiermentDetail/'+item.htsCode+'/'+item.countryCode">
-              مشاهده
-            </a>
-            </span>
+          <td>
+            <span class="fi fi-{{item.partnerIso2 | lowercase }} "></span>
+            {{ item.partnerName }}
           </td>
-          <td class="fit">
-            <a [routerLink]="'/SearchEngine/productTarrifsDetail/'+item.htsCode+'/'+item.countryCode">
-              {{ item.mfnTariff }}
-            </a>
-          </td>
+          <td class="fit">{{ item.year }}</td>
+          <td class="fit">{{ item.minTariff }}</td>
+          
         </tr>
       </tbody>
     </table>
