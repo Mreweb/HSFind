@@ -7,8 +7,9 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr'; 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BlockUIModule } from 'ng-block-ui';
+import { HttpInterceptorService } from './core/interceptor/interceptor';
 
 @NgModule({ 
   declarations: [
@@ -30,7 +31,17 @@ import { BlockUIModule } from 'ng-block-ui';
     }),
     AppRoutingModule
   ],  
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true
+    },
+    {
+      provide: LocationStrategy, 
+      useClass: HashLocationStrategy
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
