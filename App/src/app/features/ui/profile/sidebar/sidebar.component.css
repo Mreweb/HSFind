@@ -1,0 +1,21 @@
+.sidebar{
+
+}
+.sidebar ul{
+  padding: 0;
+  background: white;
+  height: 100%;
+  display: inline-block;
+  width: 100%;
+}
+.sidebar ul li{
+  display: inline-block;
+  padding: 10px;
+  font-weight: 900;
+  background: #ededed;
+  margin: 6px 5px;
+  text-align: center;
+  border: 1px solid #000;
+  min-width: 160px;
+  cursor: pointer;
+}

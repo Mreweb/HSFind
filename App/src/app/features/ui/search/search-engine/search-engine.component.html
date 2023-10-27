@@ -19,6 +19,7 @@
 <div class="main-body main" >
  
   <div class="col-xs-12 p-0">
+    <label *ngIf="hasAccessFound" class="bg-green"><b>&nbsp;</b>قبلا مشاهده شده </label>
     <table class="table table=bordered table-hover table-striped">
       <thead>
           <tr>
@@ -32,7 +33,7 @@
           <th class="fit">{{ i+1 }}</th>
           <td>{{ item.title }}</td>
           <td class="fit">
-            <a class="btn btn-default" [routerLink]="'/SearchEngine/productDetail/'+item.typeId">
+            <a class="btn btn-default"  [ngClass]="{'has-access': item.hasAccess}"  [routerLink]="'/SearchEngine/productDetail/'+item.typeId">
               جزئیات
             </a>
           </td>

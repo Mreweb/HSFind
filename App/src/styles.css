@@ -106,3 +106,9 @@
   .ng-select-container {
     height: 45px !important;
   }
+
+
+
+  form .form-control {
+    height: 45px;
+}

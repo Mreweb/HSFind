@@ -25,6 +25,10 @@ import { ProductTariffDetailComponent } from './search/product-tariff-detail/det
 import { ProfileInfoComponent } from './profile/info/profile-info.component';
 import { CSMService } from '@app/services/ui/csm.service';
 import { CountryService } from '@app/services/ui/country.service';
+import { PlanListComponent } from './profile/plan-list/plan-list.component';
+import { ProfileSideBarComponent } from './profile/sidebar/sidebar.component';
+import { PlansComponent } from './plans/plan.component';
+import { PlanBuyComponent } from './profile/plan-list/buy/plan-buy.component';
 
 
 @NgModule({
@@ -44,10 +48,14 @@ import { CountryService } from '@app/services/ui/country.service';
     ProductCodeDetailComponent,
     ProductRequirmentDetailComponent,
     ProductTariffDetailComponent,
+    PlansComponent,
+    PlanBuyComponent,
 
 
     /*Profile*/
+    ProfileSideBarComponent,
     ProfileInfoComponent,
+    PlanListComponent
   ],
   imports: [
     CommonModule,

@@ -17,6 +17,9 @@ import { ProductRequirmentDetailComponent } from './search/product-requirment-de
 import { ProductCodeDetailComponent } from './search/product-code-detail/detail.component';
 import { ProductTariffDetailComponent } from './search/product-tariff-detail/detail.component';
 import { ProfileInfoComponent } from './profile/info/profile-info.component';
+import { PlanListComponent } from './profile/plan-list/plan-list.component';
+import { PlansComponent } from './plans/plan.component';
+import { PlanBuyComponent } from './profile/plan-list/buy/plan-buy.component';
 
  
 const routes: Routes = [
@@ -26,7 +29,9 @@ const routes: Routes = [
   { path: "Verify/:userId",  title: "کد تایید حساب کاربری" , component: VerifyComponent }, 
   { path: "ForgotPass",  title: "بازیابی رمز عبور" , component: ForgotPassComponent }, 
   { path: "ForgotPassVerify/:userId",  title: "کد تایید بازیابی رمز عبور" , component: VerifyForgetPasswordComponent },  
-  { path: "AboutUs",  title: "درباره ما" , component: AboutComponent }, 
+  { path: "AboutUs",  title: "درباره ما" , component: AboutComponent },  
+  { path: "Plans",  title: "تعرفه ها" , component: PlansComponent }, 
+  
   { path: "Forbidden",  title: "عدم احراز جهت دسترسی سه سایت" , component: ForbiddenComponent }, 
   
   { path: "SearchEngine/:search",  title: "جستجوی محصول" , component: SearchEngineComponent }, 
@@ -36,7 +41,9 @@ const routes: Routes = [
   { path: "SearchEngine/productTarrifsDetail/:htsCode/:countryCode",  title: "جستجوی محصول" , component: ProductTariffDetailComponent }, 
   
   { path: "Profile",  title: "پروفایل کابری" , component: ProfileInfoComponent }, 
-
+  { path: "Profile/PlanList",  title: "تعرفه های فعال" , component: PlanListComponent }, 
+  { path: "Profile/PlanBuy/:planId",  title: "خرید تعرفه" , component: PlanBuyComponent }, 
+  
   
   
 ];

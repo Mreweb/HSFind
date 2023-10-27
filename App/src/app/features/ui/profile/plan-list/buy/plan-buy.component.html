@@ -1,0 +1,47 @@
+<app-header-site></app-header-site>
+<div class="main-body main row" style="display: block;">
+
+
+  <app--profile-sidebar></app--profile-sidebar>
+
+
+  <div class="col-xs-12 pull-left">
+    
+
+
+    <div class="current-plan active-plan pull-right col-xs-12">
+      <h3>{{ activePlans.name }}</h3>
+      <ul>
+        <li>
+          <span class="key">قیمت</span>
+          <span class="value"> 
+             <div *ngIf="activePlans.prices[0].exhibitingPrice !== null">
+              <b class="discount">{{ activePlans.prices[0].exhibitingPrice | number }} ریال </b>
+              <b class="real">{{ activePlans.prices[0].realPrice | number }} ریال </b> 
+            </div>
+            <div *ngIf="activePlans.prices[0].exhibitingPrice == null">
+              {{ activePlans.prices[0].realPrice | number }} ریال 
+            </div>
+            </span>
+        </li>
+        <li>
+          <span class="key">تعداد درخواست</span>
+          <span class="value"> {{ activePlans.requestsCount }}</span>
+        </li>
+        <li>
+          <span class="key">مدت</span>
+          <span class="value"> {{ activePlans.validityDays }} روز </span>
+        </li>
+        <li>
+          <span class="value w-100"> {{ activePlans.description }}  </span>
+        </li>
+      </ul>
+      <div class=""> 
+        <button class="btn btn-success">خرید تعرفه</button>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<app-footer-site></app-footer-site>

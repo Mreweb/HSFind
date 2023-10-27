@@ -26,6 +26,7 @@ export class SearchEngineComponent implements OnInit {
   searchItems: any;
   pageIndex = 1;
   hasData = true;
+  hasAccessFound = false;
 
   searchWord = this.route.snapshot.paramMap.get('search') || "";
   pageForm = new FormGroup({
@@ -50,6 +51,11 @@ export class SearchEngineComponent implements OnInit {
           data => {
             this.searchItems = data.content.data;
             this.hasData = true;
+            for(let i=0;i<this.searchItems.length;i++){
+              if(this.searchItems[i].hasAccess){
+                this.hasAccessFound = true;
+              }
+            }
             this.blockUI.stop();
           },
           error => {

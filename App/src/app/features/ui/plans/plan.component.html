@@ -1,0 +1,44 @@
+<app-header-site></app-header-site>
+<div class="main-body main row">
+
+    <div class="row rtl">
+        <div class="col-xs-12">
+            
+            <div class="col-xs-12"></div>
+            <div *ngFor="let item of activePlans;" class="current-plan active-plan pull-right col-md-4 col-xs-12">
+              <h3>{{ item.name }}</h3>
+              <ul>
+                <li>
+                  <span class="key">قیمت</span>
+                  <span class="value"> 
+                    <div *ngIf="item.exhibitingPrice !== null">
+                      <b class="discount">{{ item.exhibitingPrice  | number}} ریال </b>
+                      <b class="real">{{ item.price | number }} ریال </b> 
+                    </div>
+                    <div *ngIf="item.exhibitingPrice == null">
+                      {{ item.price  | number }} ریال 
+                    </div>
+                  </span>
+                </li>
+                <li>
+                  <span class="key">تعداد درخواست</span>
+                  <span class="value"> {{ item.requestsCount }}</span>
+                </li>
+                <li>
+                  <span class="key">مدت</span>
+                  <span class="value"> {{ item.validityDays }} روز </span>
+                </li>
+                <li>
+                  <span class="value w-100"> {{ item.description }}  </span>
+                </li>
+              </ul>
+              <div class=""> 
+                <button routerLink="/Profile/PlanBuy/{{item.id}}" class="btn btn-success">انتخاب تعرفه</button>
+              </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<app-footer-site></app-footer-site>
