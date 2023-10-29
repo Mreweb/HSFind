@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { FormGroup, FormControl, Validators, FormControlName } from '@angular/forms'
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerService } from '@app/services/ui/cutsomer.service';
@@ -29,6 +29,7 @@ export class HomePageComponent implements OnInit {
 
   pageForm = new FormGroup({
     include: new FormControl('', [Validators.required]),
+    isterm : new FormControl(''),
     Language: new FormControl('Fa', [Validators.required]),
     page: new FormControl('1', [Validators.required]),
     pageSize: new FormControl('10', [Validators.required])
@@ -43,7 +44,7 @@ export class HomePageComponent implements OnInit {
       this.toastr.error('خط', 'ورودی ها نامعتبر هستند');
     }
      else {
-      this.router.navigateByUrl('SearchEngine/'+this.pageForm.controls['include'].value);
+      this.router.navigateByUrl('SearchEngine/'+this.pageForm.controls['include'].value+'?isTerm='+this.pageForm.controls['isterm'].value);
     }
   }
 

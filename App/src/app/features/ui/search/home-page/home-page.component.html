@@ -9,8 +9,12 @@
   <form [formGroup]="pageForm">
     <div class="nav-search rtl">
       <div class="search-bar">
-        <div class="input-area">
+        <div class="input-area col-xs-12">
           <input formControlName="include" id="one" placeholder="بخشی از عبارت مورد نظر را تایپ کنید..." type="text">
+        </div>
+        <div class="input-area col-xs-12">
+          جستجوی عبارات مشابه
+          <input style="width: 14px !important;float: right;height: 20px;margin: 0 6px;" type="checkbox" formControlName="isterm" />
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@
     height: 150px;
   }
   .nav-search {
-    height: 90px;
+    height: 125px;
     padding: 20px;
     display: flex;
     justify-content: center;
@@ -16,7 +16,7 @@
     border-radius: 30px;
     width: 570px;
     border: 1px solid #dcdcdc;
-    display: flex;
+    display: inline-block;
     align-items: center;
     background: #fff;
   }
@@ -31,6 +31,7 @@
   }
   .input-area{
     width: 100%;
+    margin-bottom: 25px;
   }
   input {
     height: 35px;

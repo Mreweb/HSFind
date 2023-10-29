@@ -37,7 +37,6 @@ export class LoginComponent {
       data =>{
         this.captchaSrc = "data:image/png;base64,"+data.content.captchaImage;
         this.pageForm.controls['captchaId'].setValue(data.content.captchaId);
-        console.log(data);
       }
     )
   }
@@ -54,7 +53,7 @@ export class LoginComponent {
     } else {
       this.blockUI.start();
       this.CustomerService.post(this.pageForm.value, null, "/signin/password").subscribe(
-        data => {
+        (data:any) => {
           this.blockUI.stop();
           this.getCaptcha();
           let userId = data.content;
@@ -69,11 +68,15 @@ export class LoginComponent {
           this.toastr.info(data.message);
         },
         error => {
+          debugger
           this.blockUI.stop();
           this.getCaptcha();
           this.toastr.info(error.error.message);
+        },
+        ()=>{
+          console.log('complete');
         }
-      );
+    );
     }
   }
 

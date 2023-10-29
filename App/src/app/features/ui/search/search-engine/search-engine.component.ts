@@ -29,6 +29,9 @@ export class SearchEngineComponent implements OnInit {
   hasAccessFound = false;
 
   searchWord = this.route.snapshot.paramMap.get('search') || "";
+  isTerm = this.route.snapshot.queryParamMap.get('isTerm') || "";
+ 
+
   pageForm = new FormGroup({
     include: new FormControl(this.searchWord, [Validators.required]),
     Language: new FormControl('Fa', [Validators.required]),
@@ -47,12 +50,28 @@ export class SearchEngineComponent implements OnInit {
     else {
       this.blockUI.start();
       if (isFirstTime == 1) {
-        this.ProductService.get(this.pageForm.value, null, "/products/search").subscribe(
+        let searchData = {}; 
+        if (this.isTerm == 'true') {
+          searchData = {
+            term: this.pageForm.controls['include'].value,
+            Language: this.pageForm.controls['Language'].value,
+            page: this.pageForm.controls['page'].value,
+            pageSize: this.pageForm.controls['pageSize'].value,
+          }
+        } else{
+          searchData = {
+            include: this.pageForm.controls['include'].value,
+            Language: this.pageForm.controls['Language'].value,
+            page: this.pageForm.controls['page'].value,
+            pageSize: this.pageForm.controls['pageSize'].value,
+          }
+        }
+        this.ProductService.get(searchData, null, "/products/search").subscribe(
           data => {
             this.searchItems = data.content.data;
             this.hasData = true;
-            for(let i=0;i<this.searchItems.length;i++){
-              if(this.searchItems[i].hasAccess){
+            for (let i = 0; i < this.searchItems.length; i++) {
+              if (this.searchItems[i].hasAccess) {
                 this.hasAccessFound = true;
               }
             }
@@ -68,10 +87,10 @@ export class SearchEngineComponent implements OnInit {
         this.pageForm.controls['page'].setValue(this.pageIndex);
         this.ProductService.get(this.pageForm.value, null, "/products/search").subscribe(
           data => {
-            for(var i = 0; i < data.content.data.length ; i++){
+            for (var i = 0; i < data.content.data.length; i++) {
               this.searchItems.push(data.content.data[i]);
-            } 
-            if(data.content.data.length == 0){
+            }
+            if (data.content.data.length == 0) {
               this.hasData = false;
             }
             this.blockUI.stop();
