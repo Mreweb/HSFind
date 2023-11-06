@@ -29,6 +29,7 @@ import { PlanListComponent } from './profile/plan-list/plan-list.component';
 import { ProfileSideBarComponent } from './profile/sidebar/sidebar.component';
 import { PlansComponent } from './plans/plan.component';
 import { PlanBuyComponent } from './profile/plan-list/buy/plan-buy.component';
+import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { PlanBuyComponent } from './profile/plan-list/buy/plan-buy.component';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
+    NgPersianDatepickerModule,
     UIRoutingModule  
   ],
   providers: [CustomerService , ProductService , CSMService , CountryService],

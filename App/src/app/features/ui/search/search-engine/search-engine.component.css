@@ -74,10 +74,7 @@
     box-shadow: 0 1px 1px 1px rgba(133, 129, 136, 0.15),
       0 1px 1px 0 rgba(111, 117, 122, 0.3);
   }
-  .search-bar:hover {
-    border: none;
-    box-shadow: 1px 1px 8px 1px #dcdcdc;
-  }
+
   .search-bar:active {
     border: none;
     box-shadow: 1px 1px 8px 1px #dcdcdc;
