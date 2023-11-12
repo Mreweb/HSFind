@@ -1,1 +1,4 @@
- 
+.datepicker-outer-container{ 
+    position: absolute !important;
+    z-index: 10000000 !important;
+}

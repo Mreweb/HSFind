@@ -22,59 +22,69 @@ export class PlanBuyComponent implements OnInit {
   ) { }
   @BlockUI() blockUI: NgBlockUI;
 
-  
+
   planId = this.route.snapshot.paramMap.get('planId') || "";
 
   userInfo = {};
   userCurrentPlan: any = {};
-  activePlans:any= [];
-  pageForm = new FormGroup({
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
-    phoneNumber: new FormControl('', [Validators.required]),
-    gender: new FormControl('', [Validators.required]),
-    birthDate: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
-    countryCode: new FormControl('', [Validators.required]),
-    country: new FormControl('', [Validators.required]),
-    city: new FormControl('', [Validators.required]),
-    address: new FormControl('', [Validators.required]),
-    postalCode: new FormControl('', [Validators.required]),
-    personType: new FormControl('Individual', [Validators.required])
-  });
+  activePlans: any = [];
+  defects: any;
 
 
   ngOnInit(): void {
 
-    this.CSMService.get({}, null, '/plans/'+this.planId).subscribe(data => { 
+    this.CSMService.get({}, null, '/plans/' + this.planId).subscribe(data => {
       this.activePlans = data.content;
       console.log(this.activePlans);
     });
 
     this.CSMService.get({}, null, '/plans/my').subscribe(data => {
       this.userCurrentPlan = data.content.data || [];
-     });
+    });
+
+
 
   }
 
 
-  doSave() {
-  
-    
-    if (!this.pageForm.valid) {
-      this.toastr.error('خطا در ثبت نام', 'ورودی ها نامعتبر هستند');
-    } else {
-      this.blockUI.start();
-      this.CSMService.put(this.pageForm.value, null, "/customers/individual").subscribe(
-        data => {
-          this.blockUI.stop();
-          this.toastr.info(data.message);
-        },
-        error => {
-          this.blockUI.stop();
-          this.toastr.info(error.error.message);
-        }
-      );
-    }
+  setOrder() {
+    this.blockUI.start();
+    this.CSMService.get({}, null, '/customers/defects').subscribe(data => {
+      this.defects = data.content || [];
+      if (!this.defects.hasDefects) {
+        this.CSMService.post({
+          "currencyType": "IRR",
+          "orderItems": [{ "planId": this.planId, "discountCode": null }]
+        }, null, "/orders").subscribe({
+          next: (data: any) => {
+            let orderId = data.content.id;
+            this.CSMService.post({
+              "currencyType": "IRR",
+               "gateway": "ZarrinPal" 
+              }, null, "/orders/" + orderId + "/start").subscribe({
+              next: (data: any) => {
+                this.blockUI.stop();
+                let orderId = data.content.id;
+                let url = data.content.redirectUrl+data.content.authority;
+                location.href = url;
+                this.toastr.info(data.message);
+              },
+              error: (error) => {
+                this.blockUI.stop();
+                this.toastr.info(error.error.message);
+              }
+            });
+            this.toastr.info(data.message);
+          },
+          error: (error) => {
+            this.blockUI.stop();
+            this.toastr.info(error.error.message);
+          }
+        });
+      }
+    });
+
+
+
   }
 }

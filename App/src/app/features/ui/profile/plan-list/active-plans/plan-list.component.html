@@ -1,0 +1,42 @@
+<app-header-site></app-header-site>
+<div class="main-body main row" style="display: block;">
+
+
+  <app--profile-sidebar></app--profile-sidebar>
+
+
+  <div class="col-xs-12 pull-left">
+
+
+    <div class="alert alert-danger" *ngIf="userCurrentPlan.length == 0">
+      شما تعرفه ای خریداری نکرده اید.لطفا جهت استفاده از خدمات سایت یک تعرفه خریداری کنید.
+    </div>
+
+
+    <div class="col-xs-12"  *ngIf="userCurrentPlan.length > 0">
+      <p class="alert alert-info">تعرفه های فعال شما به شرح زیر می باشد</p>
+    </div>
+
+    <div class="col-xs-12"  *ngIf="userCurrentPlan.length > 0">
+      <table class="table table-hover table-stripped table-bordered">
+        <thead>
+          <tr>
+            <td>عنوان تعرفه</td>
+            <td>تعداد درخواست</td>
+            <td>مدت</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of userCurrentPlan;">
+            <td>{{ item.name }}</td>
+            <td>{{ item.requestsCount }}</td>
+            <td>{{ item.validityDays }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+  </div>
+</div>
+<app-footer-site></app-footer-site>

@@ -20,6 +20,8 @@ import { ProfileInfoComponent } from './profile/info/profile-info.component';
 import { PlanListComponent } from './profile/plan-list/plan-list.component';
 import { PlansComponent } from './plans/plan.component';
 import { PlanBuyComponent } from './profile/plan-list/buy/plan-buy.component';
+import { PlanBuyResultComponent } from './profile/plan-list/result/result.component';
+import { ActivePlansComponent } from './profile/plan-list/active-plans/plan-list.component';
 
  
 const routes: Routes = [
@@ -43,9 +45,9 @@ const routes: Routes = [
   { path: "Profile",  title: "پروفایل کابری" , component: ProfileInfoComponent }, 
   { path: "Profile/PlanList",  title: "تعرفه های فعال" , component: PlanListComponent }, 
   { path: "Profile/PlanBuy/:planId",  title: "خرید تعرفه" , component: PlanBuyComponent }, 
-  
-  
-  
+  { path: "Profile/PlanBuyResult",  title: "نتیجه خرید تعرفه" , component: PlanBuyResultComponent },
+  { path: "Profile/PlanHistory",  title: "پلن های فعال" , component: ActivePlansComponent }
+
 ];
 
 @Injectable()

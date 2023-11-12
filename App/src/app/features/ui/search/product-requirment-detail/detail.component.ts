@@ -61,7 +61,7 @@ export class ProductRequirmentDetailComponent implements OnInit {
   getTypeIdContries() {
 
     if (this.countryCode != null) {
-      this.ProductService.get({}, null, "/products/hts-countries?code=" + this.htsCode + "&revision=" + 5).subscribe(
+      this.ProductService.get({}, null, "/requirements/partners/" +"?importer=" + this.countryCode +  "&product=" + this.htsCode).subscribe(
         data => {
           for (let i = 0; i < data.content.length; i++) {
             this.contries.push({

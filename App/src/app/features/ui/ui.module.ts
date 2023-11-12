@@ -30,6 +30,8 @@ import { ProfileSideBarComponent } from './profile/sidebar/sidebar.component';
 import { PlansComponent } from './plans/plan.component';
 import { PlanBuyComponent } from './profile/plan-list/buy/plan-buy.component';
 import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
+import { PlanBuyResultComponent } from './profile/plan-list/result/result.component';
+import { ActivePlansComponent } from './profile/plan-list/active-plans/plan-list.component';
 
 
 @NgModule({
@@ -51,7 +53,8 @@ import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
     ProductTariffDetailComponent,
     PlansComponent,
     PlanBuyComponent,
-
+    PlanBuyResultComponent,
+    ActivePlansComponent,
 
     /*Profile*/
     ProfileSideBarComponent,

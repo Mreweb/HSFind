@@ -13,6 +13,7 @@ import { BrowserStorageService } from '@app/core/services/storage/browser-storag
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoginGuardService } from '@app/core/services/login-guard/login-guard.service';
 import { CacheService } from '@app/core/services/enum/cache.service';
+import { PersianCalendarService } from '@app/core/services/calendar/persian.calendar.service';
 @NgModule({
   imports: [
     CommonModule,
@@ -48,6 +49,7 @@ export class CoreModule {
         BrowserStorageService,
         HttpRestService,
         CacheService,
+        PersianCalendarService,
         LoginGuardService
       ]
     };

@@ -6,6 +6,7 @@ import { CustomerService } from '@app/services/ui/cutsomer.service';
 import { CSMService } from '@app/services/ui/csm.service';
 import { CountryService } from '@app/services/ui/country.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PersianCalendarService } from '@app/core/services/calendar/persian.calendar.service';
 @Component({
   selector: 'app-profile-info',
   templateUrl: './profile-info.component.html',
@@ -18,6 +19,8 @@ export class ProfileInfoComponent implements OnInit {
     private CustomerService: CustomerService,
     private CSMService: CSMService,
     private CountryService: CountryService,
+    private PersianCalendarService: PersianCalendarService,
+
     private toastr: ToastrService
   ) { }
   @BlockUI() blockUI: NgBlockUI;
@@ -33,7 +36,7 @@ export class ProfileInfoComponent implements OnInit {
     lastName: new FormControl('', [Validators.required]),
     phoneNumber: new FormControl('', [Validators.required]),
     gender: new FormControl('', [Validators.required]),
-    birthDate: new FormControl('', [Validators.required]),
+    birthDate: new FormControl(new Date(), [Validators.required]),
     email: new FormControl('', [Validators.required]),
     countryCode: new FormControl('', [Validators.required]),
     country: new FormControl('', [Validators.required]),
@@ -85,7 +88,10 @@ export class ProfileInfoComponent implements OnInit {
       this.pageForm.controls["lastName"].setValue(data.lastName);
       this.pageForm.controls["phoneNumber"].setValue(data.contactInfo.phoneNumber);
       this.gender = data.gender;
-      this.pageForm.controls["birthDate"].setValue('2021-09-10T16:44:02.7274636+03:30');
+
+      let birthDate = data.birthDate;
+      birthDate = this.PersianCalendarService.PersianCalendar(birthDate);
+      this.pageForm.controls["birthDate"].setValue(birthDate);
       this.pageForm.controls["email"].setValue(data.contactInfo.email);
       this.pageForm.controls["country"].setValue(data.contactInfo.country);
       this.countryId = data.contactInfo.countryCode;
@@ -107,22 +113,40 @@ export class ProfileInfoComponent implements OnInit {
       }
     }
     this.pageForm.controls['gender'].setValue(this.gender);
-    
+ 
+    let birthDateGeo: any = this.PersianCalendarService.GeorgianCalendar(this.pageForm.controls['birthDate'].value);
+ 
 
     if (!this.pageForm.valid) {
       this.toastr.error('خطا در ثبت نام', 'ورودی ها نامعتبر هستند');
     } else {
       this.blockUI.start();
-      this.CSMService.put(this.pageForm.value, null, "/customers/individual").subscribe(
-        data => {
-          this.blockUI.stop();
-          this.toastr.info(data.message);
-        },
-        error => {
-          this.blockUI.stop();
-          this.toastr.info(error.error.message);
+      this.CSMService.put(
+        {
+          "firstName":  this.pageForm.controls["firstName"].value,
+          "lastName": this.pageForm.controls["lastName"].value,
+          "phoneNumber": this.pageForm.controls["phoneNumber"].value,
+          "gender": this.pageForm.controls["gender"].value,
+          "birthDate": new Date(birthDateGeo),
+          "email": this.pageForm.controls["email"].value,
+          "countryCode": this.pageForm.controls["countryCode"].value,
+          "country": this.pageForm.controls["country"].value,
+          "city": this.pageForm.controls["city"].value,
+          "address": this.pageForm.controls["address"].value,
+          "postalCode": this.pageForm.controls["postalCode"].value,
+          "personType": "Individual"
         }
-      );
+
+        , null, "/customers/individual").subscribe(
+          data => {
+            this.blockUI.stop();
+            this.toastr.info(data.message);
+          },
+          error => {
+            this.blockUI.stop();
+            this.toastr.info(error.error.message);
+          }
+        );
     }
   }
 }

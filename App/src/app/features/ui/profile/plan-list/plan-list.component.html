@@ -11,21 +11,6 @@
     <div class="alert alert-danger" *ngIf="userCurrentPlan.length == 0">
       شما تعرفه ای خریداری نکرده اید.لطفا جهت استفاده از خدمات سایت یک تعرفه خریداری کنید.
     </div>
-    <div *ngFor="let item of userCurrentPlan;" class="current-plan pull-right col-md-4 col-xs-12">
-      <div class="alert alert-info text-center">تعرفه فعلی شما</div>
-      <h3>{{ item.name }}</h3>
-      <ul> 
-        <li>
-          <span class="key">تعداد درخواست</span>
-          <span class="value"> {{ item.requestsCount }}</span>
-        </li>
-        <li>
-          <span class="key">مدت</span>
-          <span class="value"> {{ item.validityDays }} روز </span>
-        </li>
-      </ul>
-    </div>
-
 
     <div class="col-xs-12"></div>
     <div *ngFor="let item of activePlans;" class="current-plan active-plan pull-right col-md-4 col-xs-12">
