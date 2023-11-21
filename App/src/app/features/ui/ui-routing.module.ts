@@ -22,6 +22,8 @@ import { PlansComponent } from './plans/plan.component';
 import { PlanBuyComponent } from './profile/plan-list/buy/plan-buy.component';
 import { PlanBuyResultComponent } from './profile/plan-list/result/result.component';
 import { ActivePlansComponent } from './profile/plan-list/active-plans/plan-list.component';
+import { RulesComponent } from './rules/rules.component';
+import { ContactComponent } from './contact_us/contact.component';
 
  
 const routes: Routes = [
@@ -33,6 +35,8 @@ const routes: Routes = [
   { path: "ForgotPassVerify/:userId",  title: "کد تایید بازیابی رمز عبور" , component: VerifyForgetPasswordComponent },  
   { path: "AboutUs",  title: "درباره ما" , component: AboutComponent },  
   { path: "Plans",  title: "تعرفه ها" , component: PlansComponent }, 
+  { path: "Rules",  title: "فوانین و مقررات" , component: RulesComponent }, 
+  { path: "ContactUs",  title: "تماس با ما" , component: ContactComponent }, 
   
   { path: "Forbidden",  title: "عدم احراز جهت دسترسی سه سایت" , component: ForbiddenComponent }, 
   

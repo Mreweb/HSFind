@@ -32,6 +32,8 @@ import { PlanBuyComponent } from './profile/plan-list/buy/plan-buy.component';
 import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
 import { PlanBuyResultComponent } from './profile/plan-list/result/result.component';
 import { ActivePlansComponent } from './profile/plan-list/active-plans/plan-list.component';
+import { RulesComponent } from './rules/rules.component';
+import { ContactComponent } from './contact_us/contact.component';
 
 
 @NgModule({
@@ -43,6 +45,8 @@ import { ActivePlansComponent } from './profile/plan-list/active-plans/plan-list
     VerifyForgetPasswordComponent,
     HeaderSiteComponent,
     AboutComponent,
+    RulesComponent,
+    ContactComponent,
     VerifyComponent,
     FooterSiteComponent,
     ForbiddenComponent,

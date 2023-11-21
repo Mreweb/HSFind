@@ -7,6 +7,8 @@ import { CSMService } from '@app/services/ui/csm.service';
 import { CountryService } from '@app/services/ui/country.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
+declare var $: any;
+
 @Component({
   selector: 'app-plan',
   templateUrl: './plan.component.html',
@@ -16,15 +18,28 @@ export class PlansComponent {
   userInfo = {};
   userCurrentPlan: any = {};
   activePlans:any= []; 
+  $:any;
 
-  constructor(   private CSMService: CSMService) { }
+  constructor(  
+    private route: ActivatedRoute,
+    private CSMService: CSMService
+  ) { }
   @BlockUI() blockUI: NgBlockUI;
   ngOnInit(): void {
+   
+    let modal: any = this.route.snapshot.queryParamMap.get('modal'); 
+    if(modal == "true"){
+      $('#myModal').modal('show');
+    }
 
     this.CSMService.get({}, null, '/plans?currencyType=IRR').subscribe(data => { 
       this.activePlans = data.content;
     });
 
+  }
+
+  removeModal(){
+    $('#myModal').modal('hide');
   }
 
 }

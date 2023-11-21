@@ -36,7 +36,7 @@ export class HandleErrorService {
         else if (error.status === 403) {
             switch (error.error.content) {
                 case 'Service.PlanRequired':
-                    this.router.navigate(['/Plans']);
+                    this.router.navigateByUrl('/Plans?modal=true');
                     break;
                 case 'Service.LoginRequired':
                     this.router.navigate(['/Login']);

@@ -1,6 +1,28 @@
 <app-header-site></app-header-site>
 <div class="main-body main row">
 
+<!-- Modal -->
+<div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">خرید طرح</h4>
+      </div>
+      <div class="modal-body">
+        برای دیدن جزییات کد hs، تعرفه ها و قوانین مربوط به آن در کشور مطبوع خود می بایست یک طرح فعال داشته باشید.
+برای مشاهده و خرید طرح ها روی دکمه خرید طرح کلیک کنید
+      </div>
+      <div class="modal-footer">
+        <button routerLink="/Plans" (click)="removeModal()" type="button" class="btn btn-primary">خرید طرح</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
     <div class="row rtl">
         <div class="col-xs-12">
             
