@@ -81,6 +81,9 @@ export class PlanBuyComponent implements OnInit {
             this.toastr.info(error.error.message);
           }
         });
+      } else{
+        this.blockUI.stop();
+        this.toastr.info("لطفا قبل از خرید طرح، اطلاعات خود را تکمیل کنید");
       }
     });
 
