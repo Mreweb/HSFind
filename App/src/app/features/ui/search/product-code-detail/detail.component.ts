@@ -39,6 +39,8 @@ export class ProductCodeDetailComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if (this.countryCode == null || this.countryCode == "null")
+      this.countryCode = "";
     this.loadData();
   }
 
@@ -50,34 +52,33 @@ export class ProductCodeDetailComponent implements OnInit {
   }
 
   getTypeIdContries() {
-
-    if (this.countryCode != null) {
-      this.ProductService.get({}, null, "/products/hts-countries?code=" + this.htsCode + "&revision=" + 5).subscribe(
-        data => {
-          for (let i = 0; i < data.content.length; i++) {
-            this.contries.push({
-              id: data.content[i].id,
-              code: data.content[i].code,
-              iso: data.content[i].iso2,
-              officialName: data.content[i].officialName
-            });
-            if (data.content[i].code == this.countryCode) {
-              this.selectCountryIndex = i;
-              this.countryCode = this.contries[this.selectCountryIndex].code;
-            }
+    this.ProductService.get({}, null, `/products/hts-countries?code=${this.htsCode}&revision=${5}`)
+    .subscribe(
+      data => {
+        for (let i = 0; i < data.content.length; i++) {
+          this.contries.push({
+            id: data.content[i].id,
+            code: data.content[i].code,
+            iso: data.content[i].iso2,
+            officialName: data.content[i].officialName
+          });
+          if (data.content[i].code == this.countryCode) {
+            this.selectCountryIndex = i;
+            this.countryCode = this.contries[this.selectCountryIndex].code;
           }
-
-        },
-        error => {
-          this.toastr.info(error.error.message);
         }
-      );
-    }
+
+      },
+      error => {
+        this.toastr.info(error.error.message);
+      }
+    );
   }
 
   getProductByHTS() {
     if (this.countryCode != null) {
-      this.ProductService.get({}, null, "/products/by-hts/" + this.htsCode + "/?country=" + this.countryCode + "&revision=" + 5).subscribe(
+      this.ProductService.get({}, null, `/products/by-hts/${this.htsCode}/?country=${this.countryCode}&revision=${5}`)
+      .subscribe(
         data => {
           this.product = data.content;
         },
@@ -91,7 +92,8 @@ export class ProductCodeDetailComponent implements OnInit {
 
   geProductTreeByHTS() {
     if (this.countryCode != null) {
-      this.ProductService.get({}, null, "/products/tree/" + this.htsCode + "/?country=" + this.countryCode + "&revision=" + 5).subscribe(
+      this.ProductService.get({}, null, `/products/tree/${this.htsCode}/?country=${this.countryCode}&revision=${5}`)
+      .subscribe(
         data => {
           this.productTree = data.content;
           let items = [];
@@ -115,5 +117,4 @@ export class ProductCodeDetailComponent implements OnInit {
       );
     }
   }
-
 }

@@ -5,7 +5,7 @@
 
   <div class="col-md-8 col-xs-12 pull-right p-0">
     <span class="product-title">
-      {{ product.title }}
+      {{ product?.title }}
     </span>
   </div>
   <div class="col-md-4 col-xs-12 pull-left rtl p-0">
@@ -47,7 +47,7 @@
           </td>
           <td>{{ item.title }}</td>
           <td class="fit">
-            <span class="fi fi-{{item.countryIso2.toLowerCase() }} "></span>
+            <span class="fi fi-{{item.countryIso2?.toLowerCase() }} "></span>
             {{ item.countryName }}
           </td>
           <td class="fit">
